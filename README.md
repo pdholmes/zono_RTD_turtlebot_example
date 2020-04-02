@@ -1,4 +1,4 @@
-# zonoRTD_turtlebot_example
+# zono_RTD_turtlebot_example
 This repo shows how to use RTD with forward reachable sets (FRSs) represented by zonotopes.
 We use turtlebot dynamics as our model system.
 
