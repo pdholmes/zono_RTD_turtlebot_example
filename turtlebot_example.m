@@ -6,6 +6,22 @@ clear; clc;
 
 t_total = 1;
 dt = 0.01;
+
+% model initial condition set:
+% X0 = [x_0; % initial x position
+%       y_0; % initial y position
+%       theta_0; % initial heading
+%       v_0; % initial long. velocity
+%       K1; % desired long. acceleration (K1 parameter set, centered at k1c with generator k1g)
+%       K2]; % desired yaw rate (K2 parameter set, centered at k2c with generator k2g)
+
+% non-sliceable initial conditions
+x_0 = 0;
+y_0 = 0;
+theta_0 = 0;
+v_0 = 0.5;
+
+% sliceable parameters... desired long. acceleration and yaw rate
 k1c = 0; % center of acceleration interval
 k1g = 0.2; % k1c +- k1g
 k2c = 0; % center of yaw rate interval
@@ -18,7 +34,7 @@ generate_turtlebot_example_dynamics()
 % set FRS options
 options.tStart = 0;
 options.tFinal = t_total;
-options.x0 = [0; 0; 0; 0.5; k1c; k2c]; % center of initial set
+options.x0 = [x_0; y_0; theta_0; v_0; k1c; k2c]; % center of initial set
 options.R0 = zonotope([options.x0, [0;0;0;0;k1g;0], [0;0;0;0;0;k2g]]); % generators for parameter dimensions
 options.timeStep=dt; %time step size for reachable set computation
 options.taylorTerms=5; %number of taylor terms for reachable sets
